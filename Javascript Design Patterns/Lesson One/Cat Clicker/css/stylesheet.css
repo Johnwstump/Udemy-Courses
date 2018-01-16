@@ -1,0 +1,54 @@
+	#leftPane{
+		position: absolute;
+		width: 20%;
+		height: 100%;
+		border-style: solid;
+		border-width: 1px;
+	}
+	
+	#catListHeader{
+		text-align: center;
+		margin-bottom: 15px;
+	}
+	
+	#catListHeaderLine{
+		padding-top: 0px;
+		margin-top: 0%;
+		margin-bottom: 5px;
+	}
+	
+	#catList{
+		margin-top: 0px;
+		padding-left: 0px;
+		font-size: 36px;
+	}
+	
+	.listedCats{
+		margin-bottom: 5px;
+		font-family: Verdana;
+		list-style-type: none;
+		padding-left: 25px;
+		border-style: solid;
+		border-width: 1px;
+	}
+	
+	.listedCats:hover{
+		cursor: pointer;
+	}
+
+	#rightPane{
+		position: absolute;
+		margin-left: 25%;
+	}
+	
+	#catPic:hover{
+		cursor: pointer;
+	}
+	
+	#catName{
+		text-align: center;
+	}
+	
+	#counter{
+		text-align: center;
+	}
