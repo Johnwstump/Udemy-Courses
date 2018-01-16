@@ -1,40 +1,122 @@
 
-	var NUM_CATS = 5;
-	var CAT_NAMES = ["Jim", "Sally", "Fluffy", "Benjamin", "Mint"];
-	var IMAGE_FOLDER = "Image";
-	var DEFAULT_TEXT_COLOR = "black";
-	var CLICKED_COLOR = "blue"
+	var domain = {
+		cats : new Map()
+	}
 	
-	var catValues = new Array(NUM_CATS);
-	var currCatIndex = 0;
 	
-	var catPicture = document.getElementById('catPic').addEventListener('click', function(){
-		document.getElementById('counter').textContent++;
-	});
-	
-	for (var i = 0; i < NUM_CATS; i++){
-		var catListing = document.createElement('li');
-		catListing.className = 'listedCats';
-		catListing.id = 'listedCat' + i;
-		catListing.textContent = CAT_NAMES[i];
-		catValues[i] = 0;
+	var controller = {	
+		currCat: null,
+		IMAGE_FOLDER : "Image",
+		DEFAULT_TEXT_COLOR : "black",
+		HIGHLIGHT_COLOR : "blue",
 		
-		catListing.addEventListener('click', (function(index){
-			return function(){
-				document.getElementById('listedCat' + currCatIndex).style.color = DEFAULT_TEXT_COLOR;
-				document.getElementById('listedCat' + index).style.color = CLICKED_COLOR;
-				document.getElementById('catName').textContent = CAT_NAMES[index];
-				document.getElementById('catPic').src = IMAGE_FOLDER + "/cat" + (index + 1) + ".jpg";
-				var counter = document.getElementById('counter');
-				catValues[currCatIndex] = Number(counter.textContent);
-				counter.textContent = catValues[index];
-				currCatIndex = index;
-			};
+		init : function(){
+			var catNames = ["Jim", "Sally", "Fluffy", "Benjamin", "Mint"];
 			
-		})(i));
-		document.getElementById('catList').append(catListing);
+			for (var i = 0; i < catNames.length; i++){
+				listView.addNameToList(catNames[i]);
+				domain.cats.set(catNames[i], {
+					counter : 0,
+					index: i
+				});
+			}
+			
+			catView.init();
+			listView.init();
+			if (catNames.length > 0){
+				this.changeCat(catNames[0]);
+			}
+		},
+	    
+		changeCat : function(name){
+			controller.saveCounterVal(catView.getCounterVal());
+			this.currCat = domain.cats.get(name);
+
+			listView.highlight(name);
+			catView.setCounterVal(this.currCat.counter);
+			catView.displayCatPic(this.IMAGE_FOLDER + "/cat" + (this.currCat.index + 1) + ".jpg");
+			catView.displayCatName(name);
+		},
+		
+		incrementCounter : function(){
+			if (this.currCat != null){
+				this.currCat.counter++;
+				catView.setCounterVal(this.currCat.counter);
+			}
+		},
+		
+		saveCounterVal : function(val){
+			if (this.currCat != null){
+				this.currCat.counter = Number(val);
+			}
+		},
+		
+		setCurrCat : function(cat){
+			this.currCat = cat;
+		},
+		
 	}
 	
-	if (NUM_CATS > 0){
-		document.getElementById('listedCat0').click();
+	var listView = {
+		currHighlight : "",
+		
+		init : function(){
+			
+		},
+			
+		addNameToList : function(name){
+			var catListing = document.createElement('li');
+			catListing.className = 'listedCats';
+			catListing.id = name;
+			catListing.textContent = name;
+			
+			catListing.addEventListener('click', (function(name){
+				return function(){
+					controller.changeCat(name);
+				};
+			})(name));
+			
+			document.getElementById('catList').append(catListing);
+		},
+		
+		highlight : function(name){
+			var highlight = document.getElementById(this.currHighlight);
+			if (highlight != null){
+				highlight.style.color = controller.DEFAULT_TEXT_COLOR;
+			}
+			
+			highlight = document.getElementById(name);
+			if (highlight != null){
+				highlight.style.color = controller.HIGHLIGHT_COLOR;
+			}
+			
+			this.currHighlight = name;
+		}
+		
 	}
+	
+	var catView = {
+		init : function(){
+			document.getElementById('catPic').addEventListener('click', function(){
+				controller.incrementCounter();
+			});
+		},
+		
+		displayCatName : function(name){
+			document.getElementById('catName').textContent = name;
+		},
+		
+		displayCatPic : function(src){
+			document.getElementById('catPic').src = src;
+		},
+		
+		getCounterVal : function(){
+			return Number(document.getElementById('counter').textContent);
+		},
+		
+		setCounterVal : function(val){
+			document.getElementById('counter').textContent = val;
+		}
+	}
+
+	controller.init();
