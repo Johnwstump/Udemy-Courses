@@ -1,21 +1,20 @@
 
 	var domain = {
-		cats : new Map()
+		CAT_NAMES : ["Jim", "Sally", "Fluffy", "Benjamin", "Mint"],
+		cats : new Map(),
+		currCat : null
 	}
 	
 	
 	var controller = {	
-		currCat: null,
 		IMAGE_FOLDER : "Image",
-		DEFAULT_TEXT_COLOR : "black",
-		HIGHLIGHT_COLOR : "blue",
+
+
 		
 		init : function(){
-			var catNames = ["Jim", "Sally", "Fluffy", "Benjamin", "Mint"];
-			
-			for (var i = 0; i < catNames.length; i++){
-				listView.addNameToList(catNames[i]);
-				domain.cats.set(catNames[i], {
+			for (var i = 0; i < domain.CAT_NAMES.length; i++){
+				listView.addNameToList(domain.CAT_NAMES[i]);
+				domain.cats.set(domain.CAT_NAMES[i], {
 					counter : 0,
 					index: i
 				});
@@ -23,45 +22,41 @@
 			
 			catView.init();
 			listView.init();
-			if (catNames.length > 0){
-				this.changeCat(catNames[0]);
+			if (domain.CAT_NAMES.length > 0){
+				this.changeCat(domain.CAT_NAMES[0]);
 			}
 		},
 	    
 		changeCat : function(name){
-			controller.saveCounterVal(catView.getCounterVal());
-			this.currCat = domain.cats.get(name);
+			domain.currCat = domain.cats.get(name);
 
 			listView.highlight(name);
-			catView.setCounterVal(this.currCat.counter);
-			catView.displayCatPic(this.IMAGE_FOLDER + "/cat" + (this.currCat.index + 1) + ".jpg");
+			catView.setCounterVal(domain.currCat.counter);
+			catView.displayCatPic(this.IMAGE_FOLDER + "/cat" + (domain.currCat.index + 1) + ".jpg");
 			catView.displayCatName(name);
 		},
 		
 		incrementCounter : function(){
-			if (this.currCat != null){
-				this.currCat.counter++;
-				catView.setCounterVal(this.currCat.counter);
-			}
-		},
-		
-		saveCounterVal : function(val){
-			if (this.currCat != null){
-				this.currCat.counter = Number(val);
+			if (domain.currCat != null){
+				domain.currCat.counter++;
+				catView.setCounterVal(domain.currCat.counter);
 			}
 		},
 		
 		setCurrCat : function(cat){
-			this.currCat = cat;
-		},
+			domain.currCat = cat;
+		}
 		
 	}
 	
 	var listView = {
+		DEFAULT_TEXT_COLOR : "black",
+		HIGHLIGHT_COLOR : "blue",
 		currHighlight : "",
+		catList : null,
 		
 		init : function(){
-			
+			this.catList = document.getElementById('catList');
 		},
 			
 		addNameToList : function(name){
@@ -76,18 +71,18 @@
 				};
 			})(name));
 			
-			document.getElementById('catList').append(catListing);
+			catList.append(catListing);
 		},
 		
 		highlight : function(name){
 			var highlight = document.getElementById(this.currHighlight);
 			if (highlight != null){
-				highlight.style.color = controller.DEFAULT_TEXT_COLOR;
+				highlight.style.color = this.DEFAULT_TEXT_COLOR;
 			}
 			
 			highlight = document.getElementById(name);
 			if (highlight != null){
-				highlight.style.color = controller.HIGHLIGHT_COLOR;
+				highlight.style.color = this.HIGHLIGHT_COLOR;
 			}
 			
 			this.currHighlight = name;
@@ -96,26 +91,32 @@
 	}
 	
 	var catView = {
+		catPic : null,
+		catName : null,
+		counter : null,
 		init : function(){
-			document.getElementById('catPic').addEventListener('click', function(){
+			this.catPic = document.getElementById('catPic');
+			this.catName = document.getElementById('catName');
+			this.counter = document.getElementById('counter');
+			catPic.addEventListener('click', function(){
 				controller.incrementCounter();
 			});
 		},
 		
 		displayCatName : function(name){
-			document.getElementById('catName').textContent = name;
+			catName.textContent = name;
 		},
 		
 		displayCatPic : function(src){
-			document.getElementById('catPic').src = src;
+			catPic.src = src;
 		},
 		
 		getCounterVal : function(){
-			return Number(document.getElementById('counter').textContent);
+			return Number(counter.textContent);
 		},
 		
 		setCounterVal : function(val){
-			document.getElementById('counter').textContent = val;
+			counter.textContent = val;
 		}
 	}
 
