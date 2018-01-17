@@ -1,27 +1,37 @@
 <!--- Simple clicker with counter created for Udemy Javascript Design Patterns course. --->
 <!DOCTYPE html>
-<html lang="en">
+<html lang = 'en'>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset = 'UTF-8'>
 			<title>Cat Clicker</title>
-			<link rel="stylesheet" href="css/clicker.css">
+			<link rel = 'stylesheet' href = 'css/clicker.css'>
 	</head>
 	<body>
 	<div id = 'leftPane'>
-		<h1 id = "catListHeader"> Cats! </h1>
-		<hr id = "catListHeaderLine">
+		<h1 id = 'catListHeader'> Cats! </h1>
+		<hr id = 'catListHeaderLine'>
 		<ul id = 'catList'></ul>
 	</div>
 	<div id = 'rightPane'>
 		<div id = 'catPane'>
-			<h1 id = "catName"> Test </h1>
+			<h1 id = 'catName'> Test </h1>
 			<br>
-			<img src = "" id = "catPic"> </img>
+			<img src = '' id = 'catPic'> </img>
 			<br>
-			<h2 id = "counter"> 0 </h2>
+			<h2 id = 'counter'> 0 </h2>
 			<br>
+			<div id = 'adminDiv'>
+				<button type = 'submit' id = 'adminToggleButton'> Toggle Admin Mode </button> 
+				<form id = 'adminForm' >
+					<label class = 'adminLabel'> Name </label> <input id = 'adminCatName' class = 'adminInput'> <br>
+					<label class = 'adminLabel'> Image URL </label> <input id = 'adminCatImage' class = 'adminInput'> <br>
+					<label class = 'adminLabel'> Current Count </label> <input id = 'adminCatCount' class = 'adminInput'> <br>
+					<button type = 'submit' form = 'adminForm' value = 'Submit' id = 'adminFormSubmit'> Change </button>
+				</form>
+			</div>
 		</div>
 	</div>
-	 <script src="js/clicker.js"></script>
+	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	 <script src = 'js/clicker.js'></script>
 	<body>
 </html>

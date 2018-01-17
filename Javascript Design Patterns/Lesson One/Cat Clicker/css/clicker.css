@@ -1,4 +1,5 @@
 	#leftPane{
+		overflow: hidden;
 		position: absolute;
 		width: 20%;
 		height: 100%;
@@ -41,6 +42,10 @@
 		margin-left: 25%;
 	}
 	
+	#catPic{
+		width: 100%;
+	}
+	
 	#catPic:hover{
 		cursor: pointer;
 	}
@@ -51,4 +56,41 @@
 	
 	#counter{
 		text-align: center;
+	}
+	
+	#adminForm{
+		visibility: hidden;
+		width: 520px;
+		margin: 0 auto;
+	}
+	
+	#adminFormSubmit{
+		visibility: visible;
+		display: block;
+		margin: 0 auto;
+	}
+	
+	#adminToggleButton{
+		width: 195px;
+		height: 40px;
+		display: block;
+		margin: 0 auto;
+		
+	}
+	.adminLabel{
+		display: inline-block;
+		width: 125px;
+		text-align: right;
+		padding-right: 25px;
+	}
+	.adminInput{
+		width:200px;
+		margin-right: 15px;
+	}
+	
+	!button{
+		margin-left: 30%;
+		display: inline-block;
+		width: 20%;
+		align: right;
 	}
