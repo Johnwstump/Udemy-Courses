@@ -1,5 +1,8 @@
 package com.johnwstump.springdemo.coach.impl;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -10,6 +13,16 @@ import com.johnwstump.springdemo.fortuneservice.FortuneService;
 @Component
 public class CricketCoach implements Coach {
 	private FortuneService fortuneService;
+	
+	@PostConstruct
+	public void init() {
+		System.out.println("This is the init method");
+	}
+	
+	@PreDestroy
+	public void destroy() {
+		System.out.println("This is the destroy method");
+	}
 	
 	@Override
 	public String getDailyWorkout() {
@@ -22,7 +35,7 @@ public class CricketCoach implements Coach {
 	}
 
 	@Autowired
-	@Qualifier("databaseFortuneService")
+	@Qualifier("fileFortuneService")
 	public void setFortuneService(FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}

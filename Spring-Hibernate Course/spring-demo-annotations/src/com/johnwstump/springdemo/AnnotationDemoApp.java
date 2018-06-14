@@ -38,6 +38,10 @@ public class AnnotationDemoApp {
 		System.out.println(currentCoach.getDailyWorkout());
 		System.out.println(currentCoach.getDailyFortune());
 		
+		// Tests switching to prototype scope with annotations
+		Coach secondCoach = context.getBean("footballCoach", Coach.class);
+		System.out.printf("These beans use the prototype scope: %b%n", currentCoach != secondCoach);
+		
 		// Close context
 		context.close();
 	}
