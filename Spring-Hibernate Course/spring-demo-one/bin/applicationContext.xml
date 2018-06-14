@@ -8,14 +8,14 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Define your beans here -->
-    <bean id="currentMotivation" class="motivationService.impl.RandomMotivationService"></bean>
-    <bean id="currentDiet" class="dietService.impl.VegetableDietService"></bean>
-    <bean id="currentCoach" class="coach.impl.TrackCoach" scope="prototype"> 
+    <bean id="currentMotivation" class="com.johnwstump.springdemo.motivationservice.impl.RandomMotivationService"></bean>
+    <bean id="currentDiet" class="com.johnwstump.springdemo.dietservice.impl.VegetableDietService"></bean>
+    <bean id="currentCoach" class="com.johnwstump.springdemo.coach.impl.TrackCoach" scope="prototype"> 
     	<constructor-arg name="motivationService" ref="currentMotivation"></constructor-arg>
    		<property name="dietService" ref="currentDiet"></property>
    	</bean>
    	
-   	<bean id="secondCoach" class="coach.impl.FootballCoach" init-method="init" destroy-method="destroy"> 
+   	<bean id="secondCoach" class="com.johnwstump.springdemo.coach.impl.FootballCoach" init-method="init" destroy-method="destroy"> 
     	<constructor-arg name="motivationService" ref="currentMotivation"></constructor-arg>
    		<property name="dietService" ref="currentDiet"></property>
    	</bean>
