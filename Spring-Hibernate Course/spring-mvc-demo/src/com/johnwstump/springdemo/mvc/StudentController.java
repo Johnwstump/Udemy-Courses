@@ -12,7 +12,9 @@ public class StudentController {
 	@RequestMapping("/showForm")
 	public String showForm(Model model) {
 		Student student = new Student();
-		
+		student.setCountry("BR");
+		student.setFirstName("Steven");
+		student.setLastName("Test");
 		model.addAttribute("student", student);
 		return "student-form";
 	}
