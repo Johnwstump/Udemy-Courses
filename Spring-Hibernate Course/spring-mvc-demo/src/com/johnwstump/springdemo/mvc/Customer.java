@@ -22,6 +22,9 @@ public class Customer {
 	@Size(min=1, message="is required")
 	private String lastName;
 	
+	@CourseCode(value="TEST", message="Must start with TEST")
+	private String courseCode;
+	
 	public Integer getFreePasses() {
 		return freePasses;
 	}
@@ -52,5 +55,13 @@ public class Customer {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 }
