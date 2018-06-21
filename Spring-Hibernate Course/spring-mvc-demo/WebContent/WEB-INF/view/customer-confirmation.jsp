@@ -10,5 +10,9 @@ This customer is confirmed: <br>
 	First Name: ${customer.firstName}
 	<br><br>
 	Last Name: ${customer.lastName}
+	<br><br>
+	Free Passes: ${customer.freePasses}
+	<br><br>
+	Postal Code: ${customer.postalCode}
 </body>
 </html>
