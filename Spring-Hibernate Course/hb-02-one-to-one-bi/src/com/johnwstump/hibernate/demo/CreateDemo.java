@@ -23,13 +23,14 @@ public class CreateDemo {
 		
 		try {	
 			// Create objects
-			/*
+			
 			Instructor instructor = new Instructor("John", "Stump", "johnwstump@outlook.com");
 			InstructorDetail instructorDetail = new InstructorDetail("http://fake.com/youtube", "Reading");
-			*/
 			
+			/*
 			Instructor instructor = new Instructor("Bill", "Magoo", "billyMagoo@outlook.com");
 			InstructorDetail instructorDetail = new InstructorDetail("http://Test.com/youtube", "Writing");
+			*/
 			
 			// Associate objects
 			instructor.setInstructorDetail(instructorDetail);
