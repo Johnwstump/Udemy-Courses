@@ -20,6 +20,9 @@ public class MainDemoApp {
 		// Call the business method
 		accountDAO.addAccount();
 				
+		accountDAO.setName("Test");
+		accountDAO.setServiceCode("Test");
+		
 		// Get the bean from the Spring container
 		MembershipDAO membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
 		
