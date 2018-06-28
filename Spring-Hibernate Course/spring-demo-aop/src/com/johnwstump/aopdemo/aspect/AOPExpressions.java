@@ -18,4 +18,7 @@ public class AOPExpressions {
 	
 	@Pointcut("forDAOPackage() && !(isSetter() || isGetter())")
 	public void DAOPackageNotGetterOrSetter() {}
+	
+	@Pointcut("execution(* com.johnwstump.aopdemo.dao.AccountDAO.* (..))")
+	public void inAccountDAO() {}
 }

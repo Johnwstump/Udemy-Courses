@@ -17,10 +17,10 @@ public class MainDemoApp {
 		AccountDAO accountDAO = context.getBean("accountDAO", AccountDAO.class);
 		
 		// Call the business method
-		accountDAO.addAccount(new Account("Nathaniel", "Test"));
+		accountDAO.addAccount(new Account(new Member("Nathaniel", "Brick"), "Test"));
 		
 		// Call the business method
-		accountDAO.addAccount(new Account("Dave", "Bronze"));
+		accountDAO.addAccount(new Account(new Member("Dave", "Lowell"), "Bronze"));
 				
 		accountDAO.setName("Test");
 		accountDAO.setServiceCode("Test");
@@ -30,8 +30,17 @@ public class MainDemoApp {
 		
 		membershipDAO.addAccount();
 		
+		List<Member> members;
+		
+		try{
+			members = membershipDAO.findMembers();
+		}
+		catch (Exception ex) {
+			System.out.println("Main Program .. caught exception: " + ex.getMessage());
+		}
 		
 		List<Account> accounts = accountDAO.findAccounts();
+		
 		// Close the context
 		context.close();
 	}

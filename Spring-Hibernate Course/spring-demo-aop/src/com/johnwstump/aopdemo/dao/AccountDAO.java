@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.johnwstump.aopdemo.Account;
+import com.johnwstump.aopdemo.Member;
 
 @Component
 public class AccountDAO {
@@ -31,9 +32,9 @@ public class AccountDAO {
 	
 	public List<Account> findAccounts(){
 		List<Account> accounts = new ArrayList<>();
-		Account account = new Account("John", "Silver");
-		Account account2 = new Account("Madhu", "Platinum");
-		Account account3 = new Account("Luca", "Gold");
+		Account account = new Account(new Member("John", "Test"), "Silver");
+		Account account2 = new Account(new Member("Madhu", "Test"), "Platinum");
+		Account account3 = new Account(new Member("Luca", "Test"), "Gold");
 		
 		accounts.add(account);
 		accounts.add(account2);
@@ -43,6 +44,6 @@ public class AccountDAO {
 	}
 
 	public void addAccount(Account account) {
-		System.out.println(getClass() + ": PLACEHOLDER : ADDING AN ACCOUNT");
+		System.out.println("Method called. Adding Account.");
 	}
 }

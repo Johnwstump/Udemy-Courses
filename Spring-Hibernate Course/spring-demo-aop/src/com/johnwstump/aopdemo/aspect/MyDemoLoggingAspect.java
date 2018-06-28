@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -11,6 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.johnwstump.aopdemo.Account;
+import com.johnwstump.aopdemo.Member;
 
 @Aspect
 @Component
@@ -19,33 +21,34 @@ public class MyDemoLoggingAspect {
 	
 	@Before("com.johnwstump.aopdemo.aspect.AOPExpressions.DAOPackageNotGetterOrSetter()")
 	public void beforeAddAcountAdvice(JoinPoint joinPoint) {
+		System.out.println("\n --->> Executing @Before advice with order 1");
+		System.out.println("Retrieving method signature from joinpoint:");
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 		System.out.println("Method: " + signature);
-		
-		Object[] args = joinPoint.getArgs();
-		
-		for (Object arg : args) {
-			System.out.println("Arg: " + arg);
-		}
-		
-		System.out.println("\n --->> Executing @Before advice");
 	}
 	
 	
 	@AfterReturning(pointcut ="execution(* com.johnwstump.aopdemo.dao.AccountDAO.findAccounts(..))", returning="result")
 	public void afterReturningFindAccountAdvice(JoinPoint joinPoint, List<Account> result) {
-		String method = joinPoint.getSignature().toShortString();
-		System.out.println("\n\n" + method);
-		System.out.println("Result is: " + result);
+		System.out.println("\n --->> Executing @AfterReturning advice");
+		String signature = joinPoint.getSignature().toShortString();
+		System.out.println("Method: " + signature);
 		
-		convertAccountNamesToUpper(result);
-		
-		System.out.println("After Modification Result is: " + result);
+		System.out.println("Modifying return value: ");
+		System.out.println("Return value is: " + result);
+		convertAccountNamesToUpper(result);	
+		System.out.println("After Modification return value is: " + result);
+	}
+	
+	@AfterThrowing(pointcut ="execution(* com.johnwstump.aopdemo.dao.MembershipDAO.findMembers(..))", throwing="exception")
+	public void afterThrpwomgFindAccountAdvice(JoinPoint joinPoint, Throwable exception) {
+		System.out.println("Logging exception: " + exception.getMessage());
 	}
 	
 	private void convertAccountNamesToUpper(List<Account> result) {
 		for (Account a : result) {
-			a.setName(a.getName().toUpperCase());
+			Member m = a.getMember();
+			m.setFirstName(m.getFirstName().toUpperCase());
 		}
 	}
 	

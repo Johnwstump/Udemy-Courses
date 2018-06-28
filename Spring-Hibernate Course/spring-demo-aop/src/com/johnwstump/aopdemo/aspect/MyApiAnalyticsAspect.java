@@ -15,17 +15,20 @@ import com.johnwstump.aopdemo.Account;
 @Order(2)
 public class MyApiAnalyticsAspect {
 
-	@Before("com.johnwstump.aopdemo.aspect.AOPExpressions.DAOPackageNotGetterOrSetter()")
+	@Before("com.johnwstump.aopdemo.aspect.AOPExpressions.DAOPackageNotGetterOrSetter() &&  com.johnwstump.aopdemo.aspect.AOPExpressions.inAccountDAO()")
 	public void performAPIAnalytics(JoinPoint joinPoint) {
+		System.out.println("--->> Executing @Before advice with order 2");
+		
 		Object[] args = joinPoint.getArgs();
 		
+		System.out.println("Retrieving argument from joinpoint: ");
 		for (Object o : args) {
 			if (o instanceof Account) {
 				Account a = (Account)o;
-				System.out.println("Account name: " + a.getName());
+				System.out.println("Account name: " + a.getMember().getFirstName());
 			}
 		}
-		System.out.println("\n --->> Performing API analytics()");
+		
 	}
 	
 }

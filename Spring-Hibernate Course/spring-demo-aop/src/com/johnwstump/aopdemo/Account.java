@@ -2,24 +2,24 @@ package com.johnwstump.aopdemo;
 
 public class Account {
 
-	private String name;
+	private Member member;
 	private String level;
 	
 	public Account() {}
 	
-	public Account(String name, String level) {
-		this.name = name;
+	public Account(Member member, String level) {
+		this.member = member;
 		this.level = level;
 	}
 	
-	public String getName() {
-		return name;
+	public Member getMember() {
+		return member;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
-	
+
 	public String getLevel() {
 		return level;
 	}
@@ -30,6 +30,6 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [name=" + name + ", level=" + level + "]";
+		return "Account [Member=" + member + ", level=" + level + "]";
 	}
 }
