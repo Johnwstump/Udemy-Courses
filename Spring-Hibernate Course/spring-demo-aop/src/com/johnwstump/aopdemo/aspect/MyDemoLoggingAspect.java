@@ -3,6 +3,7 @@ package com.johnwstump.aopdemo.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -21,16 +22,20 @@ public class MyDemoLoggingAspect {
 	
 	@Before("com.johnwstump.aopdemo.aspect.AOPExpressions.DAOPackageNotGetterOrSetter()")
 	public void beforeAddAcountAdvice(JoinPoint joinPoint) {
-		System.out.println("\n --->> Executing @Before advice with order 1");
+		System.out.println("\n--->> Executing @Before advice with order 1");
 		System.out.println("Retrieving method signature from joinpoint:");
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 		System.out.println("Method: " + signature);
 	}
 	
+	@After("com.johnwstump.aopdemo.aspect.AOPExpressions.DAOPackageNotGetterOrSetter()")
+	public void afterAddAcountAdvice(JoinPoint joinPoint) {
+		System.out.println("--->> Executing @After advice");
+	}
 	
 	@AfterReturning(pointcut ="execution(* com.johnwstump.aopdemo.dao.AccountDAO.findAccounts(..))", returning="result")
 	public void afterReturningFindAccountAdvice(JoinPoint joinPoint, List<Account> result) {
-		System.out.println("\n --->> Executing @AfterReturning advice");
+		System.out.println("\n--->> Executing @AfterReturning advice");
 		String signature = joinPoint.getSignature().toShortString();
 		System.out.println("Method: " + signature);
 		
