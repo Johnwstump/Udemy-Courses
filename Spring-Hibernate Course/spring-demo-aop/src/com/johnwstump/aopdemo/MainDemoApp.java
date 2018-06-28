@@ -41,6 +41,12 @@ public class MainDemoApp {
 		
 		List<Account> accounts = accountDAO.findAccounts();
 		
+		try {
+			membershipDAO.addMember();
+		} catch (Exception ex) {
+			System.out.println("Main Program .. caught exception: " + ex.getMessage());
+		}
+		
 		// Close the context
 		context.close();
 	}

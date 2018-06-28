@@ -18,4 +18,7 @@ public class MembershipDAO {
 		throw new Exception("Not yet implemented.");
 	}
 	
+	public boolean addMember() throws Exception{
+		throw new Exception("Not yet implemented");
+	}
 }

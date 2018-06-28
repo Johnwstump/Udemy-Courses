@@ -1,11 +1,14 @@
 package com.johnwstump.aopdemo.aspect;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -46,7 +49,7 @@ public class MyDemoLoggingAspect {
 	}
 	
 	@AfterThrowing(pointcut ="execution(* com.johnwstump.aopdemo.dao.MembershipDAO.findMembers(..))", throwing="exception")
-	public void afterThrpwomgFindAccountAdvice(JoinPoint joinPoint, Throwable exception) {
+	public void afterThrowingFindAccountAdvice(JoinPoint joinPoint, Throwable exception) {
 		System.out.println("Logging exception: " + exception.getMessage());
 	}
 	
@@ -57,4 +60,19 @@ public class MyDemoLoggingAspect {
 		}
 	}
 	
+	@Around("execution(* com.johnwstump.aopdemo.dao.MembershipDAO.addMember(..))")
+	public Object aroundFindAccountAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+		System.out.println("\n--->> Executing @Around advice");
+		Object result;
+		
+		try {
+			result = joinPoint.proceed();
+		}
+		catch (Exception ex){
+			System.out.println("Exception caught. Setting default return");
+			result = new Boolean(false);
+		}
+		
+		return result;
+	}
 }
