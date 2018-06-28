@@ -1,5 +1,7 @@
 package com.johnwstump.aopdemo;
 
+import java.util.List;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.johnwstump.aopdemo.dao.AccountDAO;
@@ -15,10 +17,10 @@ public class MainDemoApp {
 		AccountDAO accountDAO = context.getBean("accountDAO", AccountDAO.class);
 		
 		// Call the business method
-		accountDAO.addAccount();
+		accountDAO.addAccount(new Account("Nathaniel", "Test"));
 		
 		// Call the business method
-		accountDAO.addAccount();
+		accountDAO.addAccount(new Account("Dave", "Bronze"));
 				
 		accountDAO.setName("Test");
 		accountDAO.setServiceCode("Test");
@@ -28,6 +30,8 @@ public class MainDemoApp {
 		
 		membershipDAO.addAccount();
 		
+		
+		List<Account> accounts = accountDAO.findAccounts();
 		// Close the context
 		context.close();
 	}
