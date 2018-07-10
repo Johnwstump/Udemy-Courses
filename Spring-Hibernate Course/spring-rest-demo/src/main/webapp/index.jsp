@@ -8,6 +8,8 @@
 
 Spring REST Demo
 <br><br>
-<a href="rest/hello"> Hello </a>
+<a href="rest/hello"> Hello </a> 
+<br> <br>
+<a href="api/students?"> Get Students </a>
 </body>
 </html>

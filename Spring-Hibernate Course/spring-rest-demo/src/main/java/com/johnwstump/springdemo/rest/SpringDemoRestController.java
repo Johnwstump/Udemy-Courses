@@ -12,4 +12,5 @@ public class SpringDemoRestController {
 	public String sayHello() {
 		return "Hello world!";
 	}
+	
 }
