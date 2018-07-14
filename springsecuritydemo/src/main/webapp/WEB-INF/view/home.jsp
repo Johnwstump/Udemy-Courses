@@ -24,11 +24,19 @@
 			Role(s): <security:authentication property="principal.authorities"/>
 		</p>	
 			
+		<hr>
+		
+			<!-- Add a link to point to /leaders ..  this is for managers -->
+			
+			<a href="${pageContext.request.contextPath}/leaders"> Leaders </a>
+			
+		<hr>
+
 		<!-- Logout Button -->	
 		<form:form action="${pageContext.request.contextPath}/logout" method="POST">
 			<input type="submit" value="Logout"/>
 		</form:form>
-		<hr>
+
 	</body>
 
 </html>
