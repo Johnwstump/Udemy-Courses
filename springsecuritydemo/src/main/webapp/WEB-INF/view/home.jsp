@@ -26,9 +26,16 @@
 			
 		<hr>
 		
-			<!-- Add a link to point to /leaders ..  this is for managers -->
+			<!-- Add a link to point to /leaders ...  this is for managers -->
 			
 			<a href="${pageContext.request.contextPath}/leaders"> Leaders </a>
+			
+			<hr>
+			
+			<!-- Add a link to point to /systems ...  this is for admins -->
+			
+			<a href="${pageContext.request.contextPath}/systems"> Systems </a>
+			
 			
 		<hr>
 
