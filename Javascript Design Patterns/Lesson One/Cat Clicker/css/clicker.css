@@ -1,0 +1,96 @@
+	#leftPane{
+		overflow: hidden;
+		position: absolute;
+		width: 20%;
+		height: 100%;
+		border-style: solid;
+		border-width: 1px;
+	}
+	
+	#catListHeader{
+		text-align: center;
+		margin-bottom: 15px;
+	}
+	
+	#catListHeaderLine{
+		padding-top: 0px;
+		margin-top: 0%;
+		margin-bottom: 5px;
+	}
+	
+	#catList{
+		margin-top: 0px;
+		padding-left: 0px;
+		font-size: 36px;
+	}
+	
+	.listedCats{
+		margin-bottom: 5px;
+		font-family: Verdana;
+		list-style-type: none;
+		padding-left: 25px;
+		border-style: solid;
+		border-width: 1px;
+	}
+	
+	.listedCats:hover{
+		cursor: pointer;
+	}
+
+	#rightPane{
+		position: absolute;
+		margin-left: 25%;
+	}
+	
+	#catPic{
+		width: 100%;
+	}
+	
+	#catPic:hover{
+		cursor: pointer;
+	}
+	
+	#catName{
+		text-align: center;
+	}
+	
+	#counter{
+		text-align: center;
+	}
+	
+	#adminForm{
+		visibility: hidden;
+		width: 520px;
+		margin: 0 auto;
+	}
+	
+	#adminFormSubmit{
+		visibility: visible;
+		display: block;
+		margin: 0 auto;
+	}
+	
+	#adminToggleButton{
+		width: 195px;
+		height: 40px;
+		display: block;
+		margin: 0 auto;
+		
+	}
+	.adminLabel{
+		display: inline-block;
+		width: 125px;
+		text-align: right;
+		padding-right: 25px;
+	}
+	.adminInput{
+		width:200px;
+		margin-right: 15px;
+	}
+	
+	!button{
+		margin-left: 30%;
+		display: inline-block;
+		width: 20%;
+		align: right;
+	}
